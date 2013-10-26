@@ -43,25 +43,29 @@
 
 - (void)commonInit {
     [self setBackgroundColor:[UIColor whiteColor]];
+
     [self setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
     
     // Setup TextKit stack for the private text view.
-    NSTextStorage* textStorage = [[NSTextStorage alloc] initWithString:@""];
+    NSTextStorage* textStorage = [[NSTextStorage alloc] init];
     NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
     [textStorage addLayoutManager:layoutManager];
-    NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.frame.size.width, 10000)];
+    NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.frame.size.width, 100000)];
     [layoutManager addTextContainer:container];
-    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 10000) textContainer:container];
+    self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 100000) textContainer:container];
     self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:self.textView];
-    self.textView.scrollEnabled = NO;
     self.textView.showsHorizontalScrollIndicator = NO;
     self.textView.showsVerticalScrollIndicator = NO;
+    [self.textView setAlwaysBounceHorizontal:NO];
+    [self.textView setAlwaysBounceVertical:NO];
+    [self.textView setScrollsToTop:NO];
     [self.textView.textStorage setDelegate:self];
     [self.textView setDelegate:self];
     
-    NSDictionary *defaltAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
-    [self setAttributedText:[[NSAttributedString alloc] initWithString:@"Hello" attributes:defaltAttributes]];
+    NSDictionary *defaltAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17],
+                                       NSForegroundColorAttributeName:[UIColor blackColor]};
+    [self.textView setAttributedText:[[NSAttributedString alloc] initWithString:@" " attributes:defaltAttributes]];
     
     // Observes keyboard changes by default
     [self setAutomaticallyAdjustsContentInsetForKeyboard:YES];
@@ -73,7 +77,27 @@
 // The various method & delegate method implementations in this pragma marked section
 // are why JTSTextView works. Edit these with extreme care.
 
+- (void)updateContentSize:(BOOL)scrollToVisible delay:(CGFloat)delay {
+    CGRect boundingRect = [self.textView.layoutManager usedRectForTextContainer:self.textView.textContainer];
+    boundingRect.size.height = roundf(boundingRect.size.height+16.0f); // + 16.0 for content inset.
+    boundingRect.size.width = self.frame.size.width;
+    [self setContentSize:boundingRect.size];
+    if (scrollToVisible) {
+        if (delay) {
+            __weak JTSTextView *weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf setUseLinearNextScrollAnimation:NO];
+                [weakSelf simpleScrollToCaret];
+            });
+        } else {
+            [self setUseLinearNextScrollAnimation:NO];
+            [self simpleScrollToCaret];
+        }
+    }
+}
+
 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated {
+    [super setContentOffset:self.contentOffset animated:NO]; // Fixes a bug that breaks scrolling to top via status bar taps.
     // setContentOffset:animated: is called by UIScrollView inside its implementation
     // of scrollRectToVisible:animated:. The super implementation of
     // setContentOffset:animated: is jaggy when it's called multiple times in row.
@@ -82,6 +106,7 @@
     // one minor exception: we flip a dirty bit for "useLinearNextScrollAnimation"
     // for the scroll animation used when mimicking the long-press-and-drag-to-the-top-
     // or-bottom-edge-of-the-view with a selection caret animation.
+    contentOffset = CGPointMake(0, roundf(contentOffset.y));
     CGFloat duration;
     UIViewAnimationOptions options;
     if (self.useLinearNextScrollAnimation) {
@@ -143,7 +168,7 @@
     NSRange selectedRange = textView.selectedRange;
     if (self.ignoreNextTextSelectionAnimation == YES) {
         [self setIgnoreNextTextSelectionAnimation:NO];
-    } else {
+    } else if (selectedRange.length != textView.textStorage.length) {
         if (selectedRange.length == 0 || selectedRange.location < self.previousSelectedRange.location) {
             // Scroll to start caret
             CGRect caretRect = [self.textView caretRectForPosition:self.textView.selectedTextRange.start];
@@ -208,7 +233,168 @@
     [self.textView setAttributedText:attributedText];
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+    [self.textView setBackgroundColor:backgroundColor];
+}
+
+- (UIFont *)font {
+    return self.textView.font;
+}
+
+- (void)setFont:(UIFont *)font {
+    [self.textView setFont:font];
+}
+
+- (UIColor *)textColor {
+    return self.textView.textColor;
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    [self.textView setTextColor:textColor];
+}
+
+- (NSTextAlignment)textAlignment {
+    return self.textView.textAlignment;
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    [self.textView setTextAlignment:textAlignment];
+}
+
+- (NSRange)selectedRange {
+    return self.textView.selectedRange;
+}
+
+- (void)setSelectedRange:(NSRange)selectedRange {
+    [self.textView setSelectedRange:selectedRange];
+}
+
+- (BOOL)isEditable {
+    return [self.textView isEditable];
+}
+
+- (void)setEditable:(BOOL)editable {
+    [self.textView setEditable:editable];
+}
+
+- (BOOL)isSelectable {
+    return [self.textView isSelectable];
+}
+
+- (void)setSelectable:(BOOL)selectable {
+    [self.textView setSelectable:selectable];
+}
+
+- (UIDataDetectorTypes)dataDetectorTypes {
+    return self.textView.dataDetectorTypes;
+}
+
+- (void)setDataDetectorTypes:(UIDataDetectorTypes)dataDetectorTypes {
+    [self.textView setDataDetectorTypes:dataDetectorTypes];
+}
+
+- (BOOL)allowsEditingTextAttributes {
+    return self.textView.allowsEditingTextAttributes;
+}
+
+- (void)setAllowsEditingTextAttributes:(BOOL)allowsEditingTextAttributes {
+    [self.textView setAllowsEditingTextAttributes:allowsEditingTextAttributes];
+}
+
+- (NSDictionary *)typingAttributes {
+    return self.textView.typingAttributes;
+}
+
+- (void)setTypingAttributes:(NSDictionary *)typingAttributes {
+    [self.textView setTypingAttributes:typingAttributes];
+}
+
+- (UIView *)jts_inputView {
+    return self.textView.inputView;
+}
+
+- (void)setJts_inputView:(UIView *)jts_inputView {
+    [self.textView setInputView:jts_inputView];
+}
+
+- (UIView *)jts_inputAccessoryView {
+    return self.textView.inputAccessoryView;
+}
+
+- (void)setJts_inputAccessoryView:(UIView *)jts_inputAccessoryView {
+    [self.textView setInputAccessoryView:jts_inputAccessoryView];
+}
+
+- (BOOL)clearsOnInsertion {
+    return self.textView.clearsOnInsertion;
+}
+
+- (void)setClearsOnInsertion:(BOOL)clearsOnInsertion {
+    [self.textView setClearsOnInsertion:clearsOnInsertion];
+}
+
+- (void)scrollRangeToVisible:(NSRange)range {
+    [self.textView scrollRangeToVisible:range];
+}
+
+- (NSTextContainer *)textContainer {
+    return [self.textView textContainer];
+}
+
+- (UIEdgeInsets)textContainerInset {
+    return [self.textView textContainerInset];
+}
+
+- (void)setTextContainerInset:(UIEdgeInsets)textContainerInset {
+    [self.textView setTextContainerInset:textContainerInset];
+}
+
+- (NSLayoutManager *)layoutManager {
+    return self.textView.layoutManager;
+}
+
+- (NSTextStorage *)textStorage {
+    return [self.textView textStorage];
+}
+
+- (NSDictionary *)linkTextAttributes {
+    return [self.textView linkTextAttributes];
+}
+
+- (void)setLinkTextAttributes:(NSDictionary *)linkTextAttributes {
+    [self.textView setLinkTextAttributes:linkTextAttributes];
+}
+
 #pragma mark - Text View Delegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    BOOL shouldBegin = YES;
+    if ([self.textViewDelegate respondsToSelector:@selector(textViewShouldBeginEditing:)]) {
+        shouldBegin = [self.textViewDelegate textViewShouldBeginEditing:self];
+    }
+    return shouldBegin;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    BOOL shouldEnd = YES;
+    if ([self.textViewDelegate respondsToSelector:@selector(textViewShouldEndEditing:)]) {
+        shouldEnd = [self.textViewDelegate textViewShouldEndEditing:self];
+    }
+    return shouldEnd;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.textViewDelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
+        [self.textViewDelegate textViewDidBeginEditing:self];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([self.textViewDelegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
+        [self.textViewDelegate textViewDidEndEditing:self];
+    }
+}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     BOOL shouldChange = YES;
@@ -216,6 +402,22 @@
         shouldChange = [self.textViewDelegate textView:self shouldChangeTextInRange:range replacementText:text];
     }
     return shouldChange;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    BOOL shouldInteract = NO;
+    if ([self.textViewDelegate respondsToSelector:@selector(textView:shouldInteractWithURL:inRange:)]) {
+        shouldInteract = [self.textViewDelegate textView:self shouldInteractWithURL:URL inRange:characterRange];
+    }
+    return shouldInteract;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange {
+    BOOL shouldInteract = NO;
+    if ([self.textViewDelegate respondsToSelector:@selector(textView:shouldInteractWithTextAttachment:inRange:)]) {
+        shouldInteract = [self.textViewDelegate textView:self shouldInteractWithTextAttachment:textAttachment inRange:characterRange];
+    }
+    return shouldInteract;
 }
 
 #pragma mark - Text Storage Delegate 
@@ -287,19 +489,12 @@
     [self setContentInset:insets];
 }
 
-- (void)updateContentSize:(BOOL)scrollToVisible delay:(CGFloat)delay {
-    CGRect boundingRect = [self.textView.layoutManager usedRectForTextContainer:self.textView.textContainer];
-    [self setContentSize:CGSizeMake(self.frame.size.width, boundingRect.size.height + 16.0f)];
-    if (scrollToVisible) {
-        if (delay) {
-            __weak JTSTextView *weakSelf = self;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf setUseLinearNextScrollAnimation:NO];
-                [weakSelf simpleScrollToCaret];
-            });
-        } else {
-            [self setUseLinearNextScrollAnimation:NO];
-            [self simpleScrollToCaret];
+- (void)setAutomaticallyAdjustsContentInsetForKeyboard:(BOOL)automaticallyAdjustsContentInsetForKeyboard {
+    if (_automaticallyAdjustsContentInsetForKeyboard != automaticallyAdjustsContentInsetForKeyboard) {
+        _automaticallyAdjustsContentInsetForKeyboard = automaticallyAdjustsContentInsetForKeyboard;
+        if (_automaticallyAdjustsContentInsetForKeyboard == NO) {
+            [self setCurrentKeyboardFrame:CGRectZero];
+            [self updateBottomContentInset:CGRectZero];
         }
     }
 }
