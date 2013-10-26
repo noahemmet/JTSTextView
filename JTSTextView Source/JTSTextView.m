@@ -204,9 +204,7 @@
 #pragma mark - Text View Mimicry
 
 - (BOOL)becomeFirstResponder {
-    BOOL didBecome = [self.textView becomeFirstResponder];
-    [self simpleScrollToCaret];
-    return didBecome;
+   return [self.textView becomeFirstResponder];
 }
 
 - (BOOL)isFirstResponder {
@@ -385,6 +383,7 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self simpleScrollToCaret];
     if ([self.textViewDelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
         [self.textViewDelegate textViewDidBeginEditing:self];
     }
