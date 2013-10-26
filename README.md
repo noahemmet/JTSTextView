@@ -25,7 +25,7 @@ To use JTSTextView, you should pretty much be able to do a drop-in replacement f
 
 ## What About That 10,000 Points High Thing?
 
-Glad you brought that up. The technique used by JTSTextView means that it is *not* able to support really long runs of text (like blog posts). But for things like email clients, Twitter clients, App.net clients, et cetera, 10,000 points is most like more than enough space.
+Glad you brought that up. The technique used by JTSTextView means that it is *not* able to support really long runs of text (like blog posts). But for things like email clients, Twitter clients, App.net clients, et cetera, 10,000 points is most like more than enough space. If you're brave, you should try editing that size to 100,000 or more. I have no idea what the performance effects would be, but lemme know.
 
 ## One More Thing
 
