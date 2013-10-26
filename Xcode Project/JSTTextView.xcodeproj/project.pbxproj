@@ -20,7 +20,7 @@
 		7F82F32C181C029D001E6313 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F82F30E181C029D001E6313 /* UIKit.framework */; };
 		7F82F334181C029E001E6313 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F82F332181C029E001E6313 /* InfoPlist.strings */; };
 		7F82F336181C029E001E6313 /* JSTTextViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82F335181C029E001E6313 /* JSTTextViewTests.m */; };
-		7F82F341181C02C0001E6313 /* JTSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82F340181C02C0001E6313 /* JTSTextView.m */; };
+		7F82F344181C1867001E6313 /* JTSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82F343181C1867001E6313 /* JTSTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,8 @@
 		7F82F331181C029E001E6313 /* JSTTextViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSTTextViewTests-Info.plist"; sourceTree = "<group>"; };
 		7F82F333181C029E001E6313 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F82F335181C029E001E6313 /* JSTTextViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSTTextViewTests.m; sourceTree = "<group>"; };
-		7F82F33F181C02C0001E6313 /* JTSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSTextView.h; sourceTree = "<group>"; };
-		7F82F340181C02C0001E6313 /* JTSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSTextView.m; sourceTree = "<group>"; };
+		7F82F342181C1867001E6313 /* JTSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSTextView.h; sourceTree = "<group>"; };
+		7F82F343181C1867001E6313 /* JTSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +117,8 @@
 				7F82F31A181C029D001E6313 /* JTSAppDelegate.m */,
 				7F82F31F181C029D001E6313 /* JTSViewController.h */,
 				7F82F320181C029D001E6313 /* JTSViewController.m */,
-				7F82F33F181C02C0001E6313 /* JTSTextView.h */,
-				7F82F340181C02C0001E6313 /* JTSTextView.m */,
+				7F82F342181C1867001E6313 /* JTSTextView.h */,
+				7F82F343181C1867001E6313 /* JTSTextView.m */,
 				7F82F322181C029D001E6313 /* Images.xcassets */,
 				7F82F311181C029D001E6313 /* Supporting Files */,
 			);
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F82F321181C029D001E6313 /* JTSViewController.m in Sources */,
-				7F82F341181C02C0001E6313 /* JTSTextView.m in Sources */,
+				7F82F344181C1867001E6313 /* JTSTextView.m in Sources */,
 				7F82F31B181C029D001E6313 /* JTSAppDelegate.m in Sources */,
 				7F82F317181C029D001E6313 /* main.m in Sources */,
 			);
@@ -455,6 +455,7 @@
 				7F82F33B181C029E001E6313 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F82F33C181C029E001E6313 /* Build configuration list for PBXNativeTarget "JSTTextViewTests" */ = {
 			isa = XCConfigurationList;
@@ -463,6 +464,7 @@
 				7F82F33E181C029E001E6313 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
