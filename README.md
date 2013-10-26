@@ -5,7 +5,7 @@ A sane alternative to UITextView (since UITextView is broken beyond repair in iO
 
 ## Current Issues
 
-- **Spelling Error Underlines Look Weird.** The little red dotted underlines beneath misspelled words is drawn incorrectly. I'm not sure why. UITextView Yay!
+- **Spelling Error Underlines Look Weird.** The little red dotted underlines beneath misspelled words are drawn incorrectly. I'm not sure why. UITextView Yay!
 
 ## UITextView is Broken on iOS 7
 
@@ -19,7 +19,7 @@ UITextView is utterly broken on iOS 7. The number and severity of the bugs are b
 
 ## How Does JTSTextView Work?
 
-JTSTextView is an otherwise vanilla UIScrollView, except it manages a private UITextView subview. This private text view is of a fixed height (100,000 points) and it has its scrolling disabled. By using a fixed height and disabling scrolling, this bypasses all the bad math that otherwise breaks UITextView.
+JTSTextView is an otherwise vanilla UIScrollView, except it manages a private UITextView subview. This private text view is of a fixed height (100,000 points) and it has its scrolling implicitly disabled because it's frame height is effectively always taller than it's contentSize.height. By using a fixed height and disabling scrolling, this bypasses all the bad math that otherwise breaks UITextView.
 
 To make JTSTextView useful, it has a bunch of public properties and methods that mimic the properties, methods, and delegate protocols of UITextView proper.
 
