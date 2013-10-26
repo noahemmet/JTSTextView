@@ -8,7 +8,7 @@
 
 #import "JTSTextView.h"
 
-@interface JTSTextView () <NSTextStorageDelegate, UITextViewDelegate>
+@interface JTSTextView () <UITextViewDelegate>
 
 @property (assign, nonatomic) CGRect currentKeyboardFrame;
 @property (strong, nonatomic) UITextView *textView;
@@ -144,17 +144,20 @@
     [self updateContentSize:YES delay:YES];
 }
 
-- (void)textStorage:(NSTextStorage *)textStorage willProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta {
-    // Ignore the next animation that would otherwise be triggered by the cursor moving
-    // to a new spot. We animate to chase after the cursor as you type via the updateContentSize:(BOOL)scrollToVisible
-    // method. Most of the time, we want to also animate inside of textViewDidChangeSelection:, but only when
-    // that change is a "true" text selection change, and not the implied change that occurs when a new character is
-    // typed or deleted.
-    [self setIgnoreNextTextSelectionAnimation:YES];
-    
-    if ([self.textStorageDelegate respondsToSelector:@selector(textStorage:willProcessEditing:range:changeInLength:)]) {
-        [self.textStorageDelegate textStorage:textStorage willProcessEditing:editedMask range:editedRange changeInLength:delta];
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    BOOL shouldChange = YES;
+    if ([self.textViewDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
+        shouldChange = [self.textViewDelegate textView:self shouldChangeTextInRange:range replacementText:text];
     }
+    if (shouldChange) {
+        // Ignore the next animation that would otherwise be triggered by the cursor moving
+        // to a new spot. We animate to chase after the cursor as you type via the updateContentSize:(BOOL)scrollToVisible
+        // method. Most of the time, we want to also animate inside of textViewDidChangeSelection:, but only when
+        // that change is a "true" text selection change, and not the implied change that occurs when a new character is
+        // typed or deleted.
+        [self setIgnoreNextTextSelectionAnimation:YES];
+    }
+    return shouldChange;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -366,6 +369,66 @@
     [self.textView setLinkTextAttributes:linkTextAttributes];
 }
 
+- (UITextAutocapitalizationType)autocapitalizationType {
+    return self.textView.autocapitalizationType;
+}
+
+- (void)setAutocapitalizationType:(UITextAutocapitalizationType)autocapitalizationType {
+    [self.textView setAutocapitalizationType:autocapitalizationType];
+}
+
+- (UITextAutocorrectionType)autocorrectionType {
+    return self.textView.autocorrectionType;
+}
+
+- (UITextSpellCheckingType)spellCheckingType {
+    return self.textView.spellCheckingType;
+}
+
+- (void)setSpellCheckingType:(UITextSpellCheckingType)spellCheckingType {
+    [self.textView setSpellCheckingType:spellCheckingType];
+}
+
+- (UIKeyboardType)keyboardType {
+    return self.textView.keyboardType;
+}
+
+- (void)setKeyboardType:(UIKeyboardType)keyboardType {
+    [self.textView setKeyboardType:keyboardType];
+}
+
+- (UIKeyboardAppearance)keyboardAppearance {
+    return self.keyboardAppearance;
+}
+
+- (void)setKeyboardAppearance:(UIKeyboardAppearance)keyboardAppearance {
+    [self.textView setKeyboardAppearance:keyboardAppearance];
+}
+
+- (UIReturnKeyType)returnKeyType {
+    return self.textView.returnKeyType;
+}
+
+- (void)setReturnKeyType:(UIReturnKeyType)returnKeyType {
+    [self.textView setReturnKeyType:returnKeyType];
+}
+
+- (BOOL)enablesReturnKeyAutomatically {
+    return self.textView.enablesReturnKeyAutomatically;
+}
+
+- (void)setEnablesReturnKeyAutomatically:(BOOL)enablesReturnKeyAutomatically {
+    [self.textView setEnablesReturnKeyAutomatically:enablesReturnKeyAutomatically];
+}
+
+- (BOOL)isSecureTextEntry {
+    return [self.textView isSecureTextEntry];
+}
+
+- (void)setSecureTextEntry:(BOOL)secureTextEntry {
+    [self.textView setSecureTextEntry:secureTextEntry];
+}
+
 #pragma mark - Text View Delegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
@@ -385,6 +448,7 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
+    [self simpleScrollToCaret];
     if ([self.textViewDelegate respondsToSelector:@selector(textViewDidBeginEditing:)]) {
         [self.textViewDelegate textViewDidBeginEditing:self];
     }
@@ -394,14 +458,6 @@
     if ([self.textViewDelegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
         [self.textViewDelegate textViewDidEndEditing:self];
     }
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    BOOL shouldChange = YES;
-    if ([self.textViewDelegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
-        shouldChange = [self.textViewDelegate textView:self shouldChangeTextInRange:range replacementText:text];
-    }
-    return shouldChange;
 }
 
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
@@ -418,14 +474,6 @@
         shouldInteract = [self.textViewDelegate textView:self shouldInteractWithTextAttachment:textAttachment inRange:characterRange];
     }
     return shouldInteract;
-}
-
-#pragma mark - Text Storage Delegate 
-
-- (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta {
-    if ([self.textStorageDelegate respondsToSelector:@selector(textStorage:didProcessEditing:range:changeInLength:)]) {
-        [self.textStorageDelegate textStorage:textStorage didProcessEditing:editedMask range:editedRange changeInLength:delta];
-    }
 }
 
 #pragma mark - Keyboard Changes

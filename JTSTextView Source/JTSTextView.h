@@ -35,25 +35,11 @@
 
 
 
-// PROXIED TEXT STORAGE DELEGATE ===============================================================================================
-
-@protocol JTSTextViewTextStorageDelegate <NSObject>
-@optional
-
-- (void)textStorage:(NSTextStorage *)textStorage willProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta NS_AVAILABLE_IOS(7_0);
-
-- (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta NS_AVAILABLE_IOS(7_0);
-
-@end
-
-
-
 // JTSTextView INTERFACE PROPER ===============================================================================================
 
 @interface JTSTextView : UIScrollView
 
 @property (weak, nonatomic) id <JTSTextViewDelegate> textViewDelegate;
-@property (weak, nonatomic) id <JTSTextViewTextStorageDelegate> textStorageDelegate;
 @property (copy, nonatomic) NSAttributedString *attributedText;
 @property (copy, nonatomic) NSString *text;
 
@@ -74,27 +60,21 @@
 @property(nonatomic,readonly) NSTextContainer *textContainer NS_AVAILABLE_IOS(7_0);
 @property(nonatomic, assign) UIEdgeInsets textContainerInset NS_AVAILABLE_IOS(7_0);
 @property(nonatomic,readonly) NSLayoutManager *layoutManager NS_AVAILABLE_IOS(7_0);
-@property(nonatomic,readonly,retain) NSTextStorage *textStorage NS_AVAILABLE_IOS(7_0);
+@property(nonatomic,readonly,retain) NSTextStorage *textStorage NS_AVAILABLE_IOS(7_0); 
 @property(nonatomic, copy) NSDictionary *linkTextAttributes NS_AVAILABLE_IOS(7_0);
 
 - (void)scrollRangeToVisible:(NSRange)range;
 
+@property(nonatomic) UITextAutocapitalizationType autocapitalizationType; 
+@property(nonatomic) UITextAutocorrectionType autocorrectionType;
+@property(nonatomic) UITextSpellCheckingType spellCheckingType NS_AVAILABLE_IOS(5_0);
+@property(nonatomic) UIKeyboardType keyboardType;
+@property(nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property(nonatomic) UIReturnKeyType returnKeyType;
+@property(nonatomic) BOOL enablesReturnKeyAutomatically;
+@property(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
