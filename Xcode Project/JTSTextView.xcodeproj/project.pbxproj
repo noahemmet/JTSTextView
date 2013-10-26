@@ -20,7 +20,7 @@
 		7F82F32C181C029D001E6313 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F82F30E181C029D001E6313 /* UIKit.framework */; };
 		7F82F334181C029E001E6313 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F82F332181C029E001E6313 /* InfoPlist.strings */; };
 		7F82F336181C029E001E6313 /* JSTTextViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82F335181C029E001E6313 /* JSTTextViewTests.m */; };
-		7F82F344181C1867001E6313 /* JTSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F82F343181C1867001E6313 /* JTSTextView.m */; };
+		7FFA89AE181C337F001B5DB8 /* JTSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA89AD181C337F001B5DB8 /* JTSTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,26 +34,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F82F307181C029D001E6313 /* JSTTextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSTTextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F82F307181C029D001E6313 /* JTSTextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JTSTextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F82F30A181C029D001E6313 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7F82F30C181C029D001E6313 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7F82F30E181C029D001E6313 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		7F82F312181C029D001E6313 /* JSTTextView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSTTextView-Info.plist"; sourceTree = "<group>"; };
+		7F82F312181C029D001E6313 /* JTSTextView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTSTextView-Info.plist"; sourceTree = "<group>"; };
 		7F82F314181C029D001E6313 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F82F316181C029D001E6313 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7F82F318181C029D001E6313 /* JSTTextView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSTTextView-Prefix.pch"; sourceTree = "<group>"; };
+		7F82F318181C029D001E6313 /* JTSTextView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JTSTextView-Prefix.pch"; sourceTree = "<group>"; };
 		7F82F319181C029D001E6313 /* JTSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSAppDelegate.h; sourceTree = "<group>"; };
 		7F82F31A181C029D001E6313 /* JTSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTSAppDelegate.m; sourceTree = "<group>"; };
 		7F82F31F181C029D001E6313 /* JTSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTSViewController.h; sourceTree = "<group>"; };
 		7F82F320181C029D001E6313 /* JTSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JTSViewController.m; sourceTree = "<group>"; };
 		7F82F322181C029D001E6313 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7F82F328181C029D001E6313 /* JSTTextViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSTTextViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F82F328181C029D001E6313 /* JTSTextViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JTSTextViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F82F329181C029D001E6313 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		7F82F331181C029E001E6313 /* JSTTextViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSTTextViewTests-Info.plist"; sourceTree = "<group>"; };
+		7F82F331181C029E001E6313 /* JTSTextViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JTSTextViewTests-Info.plist"; sourceTree = "<group>"; };
 		7F82F333181C029E001E6313 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F82F335181C029E001E6313 /* JSTTextViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSTTextViewTests.m; sourceTree = "<group>"; };
-		7F82F342181C1867001E6313 /* JTSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSTextView.h; sourceTree = "<group>"; };
-		7F82F343181C1867001E6313 /* JTSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSTextView.m; sourceTree = "<group>"; };
+		7FFA89AC181C337F001B5DB8 /* JTSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTSTextView.h; path = "../../JTSTextView Source/JTSTextView.h"; sourceTree = "<group>"; };
+		7FFA89AD181C337F001B5DB8 /* JTSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTSTextView.m; path = "../../JTSTextView Source/JTSTextView.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +93,8 @@
 		7F82F308181C029D001E6313 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F82F307181C029D001E6313 /* JSTTextView.app */,
-				7F82F328181C029D001E6313 /* JSTTextViewTests.xctest */,
+				7F82F307181C029D001E6313 /* JTSTextView.app */,
+				7F82F328181C029D001E6313 /* JTSTextViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,8 +117,8 @@
 				7F82F31A181C029D001E6313 /* JTSAppDelegate.m */,
 				7F82F31F181C029D001E6313 /* JTSViewController.h */,
 				7F82F320181C029D001E6313 /* JTSViewController.m */,
-				7F82F342181C1867001E6313 /* JTSTextView.h */,
-				7F82F343181C1867001E6313 /* JTSTextView.m */,
+				7FFA89AC181C337F001B5DB8 /* JTSTextView.h */,
+				7FFA89AD181C337F001B5DB8 /* JTSTextView.m */,
 				7F82F322181C029D001E6313 /* Images.xcassets */,
 				7F82F311181C029D001E6313 /* Supporting Files */,
 			);
@@ -128,10 +128,10 @@
 		7F82F311181C029D001E6313 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7F82F312181C029D001E6313 /* JSTTextView-Info.plist */,
+				7F82F312181C029D001E6313 /* JTSTextView-Info.plist */,
 				7F82F313181C029D001E6313 /* InfoPlist.strings */,
 				7F82F316181C029D001E6313 /* main.m */,
-				7F82F318181C029D001E6313 /* JSTTextView-Prefix.pch */,
+				7F82F318181C029D001E6313 /* JTSTextView-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -148,7 +148,7 @@
 		7F82F330181C029E001E6313 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7F82F331181C029E001E6313 /* JSTTextViewTests-Info.plist */,
+				7F82F331181C029E001E6313 /* JTSTextViewTests-Info.plist */,
 				7F82F332181C029E001E6313 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -157,9 +157,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7F82F306181C029D001E6313 /* JSTTextView */ = {
+		7F82F306181C029D001E6313 /* JTSTextView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7F82F339181C029E001E6313 /* Build configuration list for PBXNativeTarget "JSTTextView" */;
+			buildConfigurationList = 7F82F339181C029E001E6313 /* Build configuration list for PBXNativeTarget "JTSTextView" */;
 			buildPhases = (
 				7F82F303181C029D001E6313 /* Sources */,
 				7F82F304181C029D001E6313 /* Frameworks */,
@@ -169,14 +169,14 @@
 			);
 			dependencies = (
 			);
-			name = JSTTextView;
+			name = JTSTextView;
 			productName = JSTTextView;
-			productReference = 7F82F307181C029D001E6313 /* JSTTextView.app */;
+			productReference = 7F82F307181C029D001E6313 /* JTSTextView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7F82F327181C029D001E6313 /* JSTTextViewTests */ = {
+		7F82F327181C029D001E6313 /* JTSTextViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7F82F33C181C029E001E6313 /* Build configuration list for PBXNativeTarget "JSTTextViewTests" */;
+			buildConfigurationList = 7F82F33C181C029E001E6313 /* Build configuration list for PBXNativeTarget "JTSTextViewTests" */;
 			buildPhases = (
 				7F82F324181C029D001E6313 /* Sources */,
 				7F82F325181C029D001E6313 /* Frameworks */,
@@ -187,9 +187,9 @@
 			dependencies = (
 				7F82F32E181C029D001E6313 /* PBXTargetDependency */,
 			);
-			name = JSTTextViewTests;
+			name = JTSTextViewTests;
 			productName = JSTTextViewTests;
-			productReference = 7F82F328181C029D001E6313 /* JSTTextViewTests.xctest */;
+			productReference = 7F82F328181C029D001E6313 /* JTSTextViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -207,7 +207,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7F82F302181C029D001E6313 /* Build configuration list for PBXProject "JSTTextView" */;
+			buildConfigurationList = 7F82F302181C029D001E6313 /* Build configuration list for PBXProject "JTSTextView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -220,8 +220,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7F82F306181C029D001E6313 /* JSTTextView */,
-				7F82F327181C029D001E6313 /* JSTTextViewTests */,
+				7F82F306181C029D001E6313 /* JTSTextView */,
+				7F82F327181C029D001E6313 /* JTSTextViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F82F321181C029D001E6313 /* JTSViewController.m in Sources */,
-				7F82F344181C1867001E6313 /* JTSTextView.m in Sources */,
+				7FFA89AE181C337F001B5DB8 /* JTSTextView.m in Sources */,
 				7F82F31B181C029D001E6313 /* JTSAppDelegate.m in Sources */,
 				7F82F317181C029D001E6313 /* main.m in Sources */,
 			);
@@ -271,7 +271,7 @@
 /* Begin PBXTargetDependency section */
 		7F82F32E181C029D001E6313 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7F82F306181C029D001E6313 /* JSTTextView */;
+			target = 7F82F306181C029D001E6313 /* JTSTextView */;
 			targetProxy = 7F82F32D181C029D001E6313 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -374,9 +374,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JSTTextView/JSTTextView-Prefix.pch";
-				INFOPLIST_FILE = "JSTTextView/JSTTextView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "JSTTextView/JTSTextView-Prefix.pch";
+				INFOPLIST_FILE = "JSTTextView/JTSTextView-Info.plist";
+				PRODUCT_NAME = JTSTextView;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -387,9 +387,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "JSTTextView/JSTTextView-Prefix.pch";
-				INFOPLIST_FILE = "JSTTextView/JSTTextView-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "JSTTextView/JTSTextView-Prefix.pch";
+				INFOPLIST_FILE = "JSTTextView/JTSTextView-Info.plist";
+				PRODUCT_NAME = JTSTextView;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -410,8 +410,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "JSTTextViewTests/JSTTextViewTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "JSTTextViewTests/JTSTextViewTests-Info.plist";
+				PRODUCT_NAME = JTSTextViewTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -429,8 +429,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JSTTextView/JSTTextView-Prefix.pch";
-				INFOPLIST_FILE = "JSTTextViewTests/JSTTextViewTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "JSTTextViewTests/JTSTextViewTests-Info.plist";
+				PRODUCT_NAME = JTSTextViewTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -439,7 +439,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7F82F302181C029D001E6313 /* Build configuration list for PBXProject "JSTTextView" */ = {
+		7F82F302181C029D001E6313 /* Build configuration list for PBXProject "JTSTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7F82F337181C029E001E6313 /* Debug */,
@@ -448,7 +448,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7F82F339181C029E001E6313 /* Build configuration list for PBXNativeTarget "JSTTextView" */ = {
+		7F82F339181C029E001E6313 /* Build configuration list for PBXNativeTarget "JTSTextView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7F82F33A181C029E001E6313 /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7F82F33C181C029E001E6313 /* Build configuration list for PBXNativeTarget "JSTTextViewTests" */ = {
+		7F82F33C181C029E001E6313 /* Build configuration list for PBXNativeTarget "JTSTextViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7F82F33D181C029E001E6313 /* Debug */,
