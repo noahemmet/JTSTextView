@@ -3,6 +3,10 @@ JTSTextView
 
 A sane alternative to UITextView (since UITextView is broken beyond repair in iOS 7).
 
+## Current Issues
+
+- **Text isn't visible when running the sample app in the Simulator.** I'm still looking for the cause for this. Text is visible when running the sample app on an actual device. Yay, UITextView!
+
 ## UITextView is Broken on iOS 7
 
 UITextView is utterly broken on iOS 7. The number and severity of the bugs are beyond the scope of this little README, but anyone who's dealt with UITextView yet will know what I mean. Here's the gist of what's wrong with UITextView on iOS 7:
