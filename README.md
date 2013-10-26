@@ -29,4 +29,4 @@ Glad you brought that up. The technique used by JTSTextView means that it is *no
 
 ## One More Thing
 
-Oh yeah: JTSTextView also automatically manages changing its bottom content inset in response to keyboard visibility changes. Finally.
+Oh yeah: JTSTextView also automatically manages changing its bottom content inset in response to keyboard visibility changes. Finally! If you don't want this, just set `automaticallyAdjustsContentInsetForKeyboard` to NO.
