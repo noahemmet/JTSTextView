@@ -15,7 +15,7 @@ UITextView is utterly broken on iOS 7. The number and severity of the bugs are b
 
 - The text view will not keep the text entry caret visible when breaking into new lines.
 
-- Using attributed strings (whether via setAttributedText or via the new NSTextStorageDelegate protocol) causes even more math to be wrong. The CGRect returned from caretRectForPosition is wrong anywhere from one to 5 times (!) before returning the correct rect *after each keystroke*. This means that Greg Pierce's really clever UITextView gist simply can't work if you also need attributed strings.
+- Using attributed strings (whether via setAttributedText or via the new NSTextStorageDelegate protocol) causes even more math to be wrong. The CGRect returned from caretRectForPosition is wrong anywhere from one to 5 times (!) before returning the correct rect *after each keystroke*. This means that [Greg Pierce's really clever UITextView gist](https://gist.github.com/agiletortoise/a24ccbf2d33aafb2abc1) simply can't work if you also need attributed strings.
 
 ## How Does JTSTextView Work?
 
