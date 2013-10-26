@@ -5,7 +5,7 @@ A sane alternative to UITextView (since UITextView is broken beyond repair in iO
 
 ## Current Issues
 
-- **Text isn't visible when running the sample app in the Simulator.** I'm still looking for the cause for this. Text is visible when running the sample app on an actual device. Yay, UITextView!
+- **Spelling Error Underlines Look Weird.** The little red dotted underlines beneath misspelled words is drawn incorrectly. I'm not sure why. UITextView Yay!
 
 ## UITextView is Broken on iOS 7
 
@@ -19,7 +19,7 @@ UITextView is utterly broken on iOS 7. The number and severity of the bugs are b
 
 ## How Does JTSTextView Work?
 
-JTSTextView is an otherwise vanilla UIScrollView, except it manages a private UITextView subview. This private text view is of a fixed height (10,000 points) and it has its scrolling disabled. By using a fixed height and disabling scrolling, this bypasses all the bad math that otherwise breaks UITextView.
+JTSTextView is an otherwise vanilla UIScrollView, except it manages a private UITextView subview. This private text view is of a fixed height (100,000 points) and it has its scrolling disabled. By using a fixed height and disabling scrolling, this bypasses all the bad math that otherwise breaks UITextView.
 
 To make JTSTextView useful, it has a bunch of public properties and methods that mimic the properties, methods, and delegate protocols of UITextView proper.
 
@@ -27,9 +27,9 @@ To make JTSTextView useful, it has a bunch of public properties and methods that
 
 To use JTSTextView, you should pretty much be able to do a drop-in replacement for all your UITextView code. There are a few differences, but on the whole *it just works*.
 
-## What About That 10,000 Points High Thing?
+## What About That 100,000 Points High Thing?
 
-Glad you brought that up. The technique used by JTSTextView means that it is *not* able to support really long runs of text (like blog posts). But for things like email clients, Twitter clients, App.net clients, et cetera, 10,000 points is most like more than enough space. If you're brave, you should try editing that size to 100,000 or more. I have no idea what the performance effects would be, but lemme know.
+Glad you brought that up. The technique used by JTSTextView means that it is *not* able to support really long runs of text (like really long blog posts). But for things like email clients, Twitter clients, App.net clients, et cetera, 100,000 points is most like more than enough space. If you're brave, you should try editing that size to 1,000,000 or more. I have no idea what the performance effects would be, but lemme know.
 
 ## One More Thing
 
