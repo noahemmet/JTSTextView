@@ -60,7 +60,6 @@
     [self.textView setAlwaysBounceHorizontal:NO];
     [self.textView setAlwaysBounceVertical:NO];
     [self.textView setScrollsToTop:NO];
-    [self.textView.textStorage setDelegate:self];
     [self.textView setDelegate:self];
     
     NSDictionary *defaltAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17],
