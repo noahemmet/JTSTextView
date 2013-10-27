@@ -337,10 +337,6 @@
     [self.textView setClearsOnInsertion:clearsOnInsertion];
 }
 
-- (void)scrollRangeToVisible:(NSRange)range {
-    [self.textView scrollRangeToVisible:range];
-}
-
 - (NSTextContainer *)textContainer {
     return [self.textView textContainer];
 }
@@ -427,6 +423,14 @@
 
 - (void)setSecureTextEntry:(BOOL)secureTextEntry {
     [self.textView setSecureTextEntry:secureTextEntry];
+}
+
+- (void)scrollRangeToVisible:(NSRange)range {
+    [self.textView scrollRangeToVisible:range];
+}
+
+- (void)insertText:(NSString *)text {
+    [self.textView insertText:text];
 }
 
 #pragma mark - Text View Delegate

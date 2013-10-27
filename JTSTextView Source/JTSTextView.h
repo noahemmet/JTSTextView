@@ -62,9 +62,6 @@
 @property(nonatomic,readonly) NSLayoutManager *layoutManager NS_AVAILABLE_IOS(7_0);
 @property(nonatomic,readonly,retain) NSTextStorage *textStorage NS_AVAILABLE_IOS(7_0); 
 @property(nonatomic, copy) NSDictionary *linkTextAttributes NS_AVAILABLE_IOS(7_0);
-
-- (void)scrollRangeToVisible:(NSRange)range;
-
 @property(nonatomic) UITextAutocapitalizationType autocapitalizationType; 
 @property(nonatomic) UITextAutocorrectionType autocorrectionType;
 @property(nonatomic) UITextSpellCheckingType spellCheckingType NS_AVAILABLE_IOS(5_0);
@@ -73,6 +70,9 @@
 @property(nonatomic) UIReturnKeyType returnKeyType;
 @property(nonatomic) BOOL enablesReturnKeyAutomatically;
 @property(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;
+
+- (void)scrollRangeToVisible:(NSRange)range;
+- (void)insertText:(NSString *)text;
 
 @end
 
