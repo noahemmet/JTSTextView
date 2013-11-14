@@ -24,6 +24,15 @@
 
 @implementation JTSTextView
 
+- (instancetype)initWithFrame:(CGRect)frame
+                  textStorage:(NSTextStorage*)textStorage {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInitWithTextStorage:textStorage];
+    }
+    return self;
+}
+
 - (void)dealloc {
     [self removeKeyboardNotifications];
 }
@@ -31,23 +40,22 @@
 - (id)initWithFrame:(CGRect)frame  {
     self = [super initWithFrame:frame];
     if (self) {
-        [self commonInit];
+        [self commonInitWithTextStorage:[[NSTextStorage alloc] init]];
     }
     return self;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self commonInit];
+    [self commonInitWithTextStorage:[[NSTextStorage alloc] init]];
 }
 
-- (void)commonInit {
+- (void)commonInitWithTextStorage:(NSTextStorage*)textStorage {
     [self setBackgroundColor:[UIColor whiteColor]];
 
     [self setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
     
     // Setup TextKit stack for the private text view.
-    NSTextStorage* textStorage = [[NSTextStorage alloc] init];
     NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
     [textStorage addLayoutManager:layoutManager];
     NSTextContainer *container = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.frame.size.width, 100000)];
