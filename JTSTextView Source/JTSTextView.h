@@ -39,6 +39,9 @@
 
 @interface JTSTextView : UIScrollView
 
+- (instancetype)initWithFrame:(CGRect)frame
+                  textStorage:(NSTextStorage*)textStorage;
+
 @property (weak, nonatomic) id <JTSTextViewDelegate> textViewDelegate;
 @property (copy, nonatomic) NSAttributedString *attributedText;
 @property (copy, nonatomic) NSString *text;
