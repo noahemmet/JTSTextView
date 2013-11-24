@@ -548,6 +548,10 @@
     UIEdgeInsets insets = self.contentInset;
     insets.bottom = intersection.size.height;
     [self setContentInset:insets];
+    
+    UIEdgeInsets scrollInsets = self.scrollIndicatorInsets;
+    scrollInsets.bottom = intersection.size.height;
+    [self setScrollIndicatorInsets:scrollInsets];
 }
 
 - (void)setAutomaticallyAdjustsContentInsetForKeyboard:(BOOL)automaticallyAdjustsContentInsetForKeyboard {
@@ -561,11 +565,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
