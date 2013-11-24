@@ -8,6 +8,10 @@
 
 #import "JTSTextView.h"
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "JTSTextView requires ARC support."
+#endif
+
 @interface JTSTextView () <UITextViewDelegate>
 
 @property (assign, nonatomic) CGRect currentKeyboardFrame;
