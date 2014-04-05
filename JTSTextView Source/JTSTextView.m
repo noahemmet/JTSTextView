@@ -20,6 +20,9 @@
 @property (assign, nonatomic) BOOL useLinearNextScrollAnimation;
 @property (assign, nonatomic) BOOL ignoreNextTextSelectionAnimation;
 
+@property (assign, nonatomic) UIEdgeInsets originalContentInsets;
+@property (assign, nonatomic) UIEdgeInsets originalScrollInsets;
+
 @end
 
 #define BOTTOM_PADDING 8.0f
@@ -81,6 +84,8 @@
     // Observes keyboard changes by default
     [self setAutomaticallyAdjustsContentInsetForKeyboard:YES];
     [self addKeyboardNotifications];
+    self.originalContentInsets = UIEdgeInsetsZero;
+    self.originalScrollInsets = UIEdgeInsetsZero;
 }
 
 #pragma mark - These Are Why This Works
@@ -497,9 +502,9 @@
 }
 
 - (void)addKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInsetsForKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInsetsForKeyboardNotification:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInsetsForKeyboardNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)removeKeyboardNotifications {
@@ -508,49 +513,34 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification {
-    if (self.automaticallyAdjustsContentInsetForKeyboard) {
-        NSValue *frameValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect targetKeyboardFrame = CGRectZero;
-        [frameValue getValue:&targetKeyboardFrame];
-        
-        // Convert from window coordinates to my coordinates
-        targetKeyboardFrame = [self.superview convertRect:targetKeyboardFrame fromView:nil];
-        
-        [self setCurrentKeyboardFrame:targetKeyboardFrame];
-        [self updateBottomContentInset:targetKeyboardFrame];
+- (void)updateInsetsForKeyboardNotification:(NSNotification *)keyboardNotification {
+    if (!self.automaticallyAdjustsContentInsetForKeyboard) {
+        return;
     }
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    if (self.automaticallyAdjustsContentInsetForKeyboard) {
-        [self setCurrentKeyboardFrame:CGRectZero];
-        [self updateBottomContentInset:CGRectZero];
-    }
-}
-
-- (void)keyboardWillChangeFrame:(NSNotification *)notification {
-    if (self.automaticallyAdjustsContentInsetForKeyboard) {
-        NSValue *frameValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-        CGRect targetKeyboardFrame = CGRectZero;
-        [frameValue getValue:&targetKeyboardFrame];
-        
-        // Convert from window coordinates to my coordinates
-        targetKeyboardFrame = [self.superview convertRect:targetKeyboardFrame fromView:nil];
-        
-        [self setCurrentKeyboardFrame:targetKeyboardFrame];
-        [self updateBottomContentInset:targetKeyboardFrame];
-    }
-}
-
-- (void)updateBottomContentInset:(CGRect)keyboardFrame {
-    CGRect intersection = CGRectIntersection(self.frame, keyboardFrame);
-    UIEdgeInsets insets = self.contentInset;
-    insets.bottom = intersection.size.height;
-    [self setContentInset:insets];
     
+    // Ensure that the view's content inset and scroll indicator insets don't get overwritten.
+    if (UIEdgeInsetsEqualToEdgeInsets(self.originalContentInsets, UIEdgeInsetsZero)) {
+        self.originalContentInsets = self.contentInset;
+    }
+    if (UIEdgeInsetsEqualToEdgeInsets(self.originalScrollInsets, UIEdgeInsetsZero)) {
+        self.originalScrollInsets = self.scrollIndicatorInsets;
+    }
+    
+    CGRect keyboardFrame = CGRectZero;
+    if ([keyboardNotification.name isEqualToString:UIKeyboardWillShowNotification] ||
+        [keyboardNotification.name isEqualToString:UIKeyboardWillChangeFrameNotification]) {
+        keyboardFrame = [keyboardNotification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        keyboardFrame = [self.superview convertRect:keyboardFrame fromView:nil];
+    }
+    
+    CGRect intersection = CGRectIntersection(self.frame, keyboardFrame);
+    
+    UIEdgeInsets insets = self.contentInset;
+    insets.bottom = MAX(intersection.size.height, self.originalContentInsets.bottom);
     UIEdgeInsets scrollInsets = self.scrollIndicatorInsets;
-    scrollInsets.bottom = intersection.size.height;
+    scrollInsets.bottom = MAX(intersection.size.height, self.originalScrollInsets.bottom);
+    
+    [self setContentInset:insets];
     [self setScrollIndicatorInsets:scrollInsets];
 }
 
@@ -558,8 +548,7 @@
     if (_automaticallyAdjustsContentInsetForKeyboard != automaticallyAdjustsContentInsetForKeyboard) {
         _automaticallyAdjustsContentInsetForKeyboard = automaticallyAdjustsContentInsetForKeyboard;
         if (_automaticallyAdjustsContentInsetForKeyboard == NO) {
-            [self setCurrentKeyboardFrame:CGRectZero];
-            [self updateBottomContentInset:CGRectZero];
+            [self updateInsetsForKeyboardNotification:nil];
         }
     }
 }
