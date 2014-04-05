@@ -39,8 +39,7 @@
 
 @interface JTSTextView : UIScrollView
 
-- (instancetype)initWithFrame:(CGRect)frame
-                  textStorage:(NSTextStorage*)textStorage;
+- (instancetype)initWithFrame:(CGRect)frame textStorage:(NSTextStorage *)textStorage;
 
 @property (weak, nonatomic) id <JTSTextViewDelegate> textViewDelegate;
 @property (copy, nonatomic) NSAttributedString *attributedText;
@@ -48,31 +47,33 @@
 
 @property (assign, nonatomic) BOOL automaticallyAdjustsContentInsetForKeyboard; // Defaults to YES
 
-@property(nonatomic,retain) UIFont *font;
-@property(nonatomic,retain) UIColor *textColor;
-@property(nonatomic) NSTextAlignment textAlignment;    // default is NSLeftTextAlignment
-@property(nonatomic) NSRange selectedRange;
-@property(nonatomic,getter=isEditable) BOOL editable;
-@property(nonatomic,getter=isSelectable) BOOL selectable NS_AVAILABLE_IOS(7_0); // toggle selectability, which controls the ability of the user to select content and interact with URLs & attachments
-@property(nonatomic) UIDataDetectorTypes dataDetectorTypes NS_AVAILABLE_IOS(3_0);
-@property(nonatomic) BOOL allowsEditingTextAttributes NS_AVAILABLE_IOS(6_0); // defaults to NO
-@property(nonatomic,copy) NSDictionary *typingAttributes NS_AVAILABLE_IOS(6_0); // automatically resets when the selection changes
-@property(nonatomic, strong) UIView *jts_inputView;
-@property(nonatomic, strong) UIView *jts_inputAccessoryView;
-@property(nonatomic) BOOL clearsOnInsertion NS_AVAILABLE_IOS(6_0);
-@property(nonatomic,readonly) NSTextContainer *textContainer NS_AVAILABLE_IOS(7_0);
-@property(nonatomic, assign) UIEdgeInsets textContainerInset NS_AVAILABLE_IOS(7_0);
-@property(nonatomic,readonly) NSLayoutManager *layoutManager NS_AVAILABLE_IOS(7_0);
-@property(nonatomic,readonly,retain) NSTextStorage *textStorage NS_AVAILABLE_IOS(7_0); 
-@property(nonatomic, copy) NSDictionary *linkTextAttributes NS_AVAILABLE_IOS(7_0);
-@property(nonatomic) UITextAutocapitalizationType autocapitalizationType; 
-@property(nonatomic) UITextAutocorrectionType autocorrectionType;
-@property(nonatomic) UITextSpellCheckingType spellCheckingType NS_AVAILABLE_IOS(5_0);
-@property(nonatomic) UIKeyboardType keyboardType;
-@property(nonatomic) UIKeyboardAppearance keyboardAppearance;
-@property(nonatomic) UIReturnKeyType returnKeyType;
-@property(nonatomic) BOOL enablesReturnKeyAutomatically;
-@property(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;
+@property (strong, nonatomic) UIFont *font UI_APPEARANCE_SELECTOR;
+@property (strong, nonatomic) UIColor *textColor UI_APPEARANCE_SELECTOR;
+@property (assign, nonatomic) NSTextAlignment textAlignment;    // default is NSLeftTextAlignment
+@property (assign, nonatomic) NSRange selectedRange;
+@property (assign, nonatomic, getter=isEditable) BOOL editable;
+@property (assign, nonatomic, getter=isSelectable) BOOL selectable; // toggle selectability, which controls the ability of the user to select content and interact with URLs & attachments
+@property (assign, nonatomic) UIDataDetectorTypes dataDetectorTypes;
+@property (assign, nonatomic) BOOL allowsEditingTextAttributes; // defaults to NO
+@property (copy, nonatomic) NSDictionary *typingAttributes; // automatically resets when the selection changes
+
+@property (strong, nonatomic) UIView *jts_inputView;
+@property (strong, nonatomic) UIView *jts_inputAccessoryView;
+
+@property (assign, nonatomic) BOOL clearsOnInsertion;
+@property (strong, nonatomic, readonly) NSTextContainer *textContainer;
+@property (assign, nonatomic) UIEdgeInsets textContainerInset;
+@property (strong, nonatomic, readonly) NSLayoutManager *layoutManager;
+@property (strong, nonatomic, readonly) NSTextStorage *textStorage;
+@property (copy, nonatomic) NSDictionary *linkTextAttributes;
+@property (assign, nonatomic) UITextAutocapitalizationType autocapitalizationType;
+@property (assign, nonatomic) UITextAutocorrectionType autocorrectionType;
+@property (assign, nonatomic) UITextSpellCheckingType spellCheckingType;
+@property (assign, nonatomic) UIKeyboardType keyboardType;
+@property (assign, nonatomic) UIKeyboardAppearance keyboardAppearance;
+@property (assign, nonatomic) UIReturnKeyType returnKeyType;
+@property (assign, nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (assign, nonatomic, getter=isSecureTextEntry) BOOL secureTextEntry;
 
 - (void)scrollRangeToVisible:(NSRange)range;
 - (void)insertText:(NSString *)text;

@@ -25,7 +25,7 @@
     [self.view addSubview:textView];
     [self setTextView:textView];
     
-    [self.textView setText:@"Me and my dad make models of clipper ships. Clipper ships sail on the ocean. Clipper ships never sail on rivers or lakes. I like clipper ships because they are fast. Clipper ships have lots of sails and are made of wood. "];
+    [self.textView setAttributedText:[[NSAttributedString alloc] initWithString:@"Me and my dad make models of clipper ships. Clipper ships sail on the ocean. Clipper ships never sail on rivers or lakes. I like clipper ships because they are fast. Clipper ships have lots of sails and are made of wood. "]];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Toggle Keyboard" style:UIBarButtonItemStyleDone target:self action:@selector(toggle:)];
 }

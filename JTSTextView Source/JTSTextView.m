@@ -31,6 +31,16 @@
 
 @implementation JTSTextView
 
++ (void)initialize {
+    // Configure the default appearance
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [[self appearance] setBackgroundColor:[UIColor whiteColor]];
+        [[self appearance] setFont:[UIFont systemFontOfSize:17.0]];
+        [[self appearance] setTextColor:[UIColor blackColor]];
+    });
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
                   textStorage:(NSTextStorage*)textStorage {
     self = [super initWithFrame:frame];
@@ -58,8 +68,6 @@
 }
 
 - (void)commonInitWithTextStorage:(NSTextStorage*)textStorage {
-    [self setBackgroundColor:[UIColor whiteColor]];
-
     [self setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
     
     // Setup TextKit stack for the private text view.
@@ -76,10 +84,6 @@
     [self.textView setAlwaysBounceVertical:NO];
     [self.textView setScrollsToTop:NO];
     [self.textView setDelegate:self];
-    
-    NSDictionary *defaltAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17],
-                                       NSForegroundColorAttributeName:[UIColor blackColor]};
-    [self.textView setAttributedText:[[NSAttributedString alloc] initWithString:@" " attributes:defaltAttributes]];
     
     // Observes keyboard changes by default
     [self setAutomaticallyAdjustsContentInsetForKeyboard:YES];
