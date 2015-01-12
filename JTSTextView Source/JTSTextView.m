@@ -235,6 +235,7 @@
 }
 
 - (BOOL)resignFirstResponder {
+    [super resignFirstResponder];
     return [self.textView resignFirstResponder];
 }
 
@@ -389,6 +390,10 @@
 
 - (void)setAutocapitalizationType:(UITextAutocapitalizationType)autocapitalizationType {
     [self.textView setAutocapitalizationType:autocapitalizationType];
+}
+
+- (void)setAutocorrectionType:(UITextAutocorrectionType)autocorrectionType {
+    self.textView.autocorrectionType = autocorrectionType;
 }
 
 - (UITextAutocorrectionType)autocorrectionType {
